@@ -7,7 +7,9 @@ Create a function named sumLargestNumbers that will receive an array of numbers 
 */
 
 const sumLargestNumbers = function (data) {
-  // Put your solution here
+  let sum = 0
+  data.forEach(arr => sum += arr)
+  return sum
 };
 
 console.log(sumLargestNumbers([1, 10])); // 11
