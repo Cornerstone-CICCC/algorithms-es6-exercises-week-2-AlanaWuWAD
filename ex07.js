@@ -9,7 +9,11 @@ Not sure where to get started? It might be useful to start by creating a variabl
 */
 
 const checkAir = function (samples, threshold) {
-  // Code here!
+  let proportion = 0
+  samples.filter(air => {
+    air === 'dirty'? ++proportion: proportion
+  })
+  return proportion/samples.length > threshold? 'Poluted':'Clean'
 };
 
 console.log(

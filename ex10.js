@@ -8,7 +8,12 @@ Create a function named multiplicationTable that receives a number maxValue as i
 */
 
 const multiplicationTable = function (maxValue) {
-  // Your code here
+  const digits = [...Array(maxValue)].map((_, i) => i+1) // creat 1-maxValue array
+  let arr = []
+  digits.forEach((num,i)=>{
+    arr[i] = digits.map(sum => num * sum)
+  })
+  return arr
 };
 
 console.log(multiplicationTable(1));
