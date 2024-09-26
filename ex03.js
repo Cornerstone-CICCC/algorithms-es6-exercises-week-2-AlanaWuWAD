@@ -7,6 +7,7 @@ Create a function named numberOfVowels that will receive a string and return the
 
 */
 
+
 const numberOfVowels = function (data) {
   let num = 0
   const vowels = ['a','e','i','o','u']

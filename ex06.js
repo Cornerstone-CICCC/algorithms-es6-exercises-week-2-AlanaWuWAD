@@ -20,7 +20,41 @@ Note: There may be multiple available spots for a particular vehicle. It does no
 */
 
 const whereCanIPark = function (spots, vehicle) {
-  // Code here!
+  let spot
+  // regular car
+  if (vehicle === 'regular'){
+    spots.forEach((element,x) => {
+      element.forEach((word,y)=>{
+        if(word === 'R'){
+          spot=[y,x]
+        }
+      })
+    })
+  }
+  // small car
+  if (vehicle === 'small'){
+    spots.forEach((element,x) => {
+      element.forEach((word,y)=>{
+        if(word === 'S' || word === 'R'){
+          spot=[y,x]
+        }
+      })
+    }) 
+  }
+  // motorcycle
+  if (vehicle === 'motorcycle'){
+    spots.forEach((element,x) => {
+      element.forEach((word,y)=>{
+        if(word === 'M' || word === 'S' || word === 'R'){
+          spot=[y,x]
+        }
+      })
+    }) 
+  }
+  if (spot === undefined){
+    spot = 'false'
+  }
+  return spot
 };
 
 console.log(
