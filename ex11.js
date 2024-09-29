@@ -27,26 +27,39 @@ Implement the functions one by one. The example inputs and outputs below will he
 // Use the value below whenever you need the value of Pi
 const PI = 3.14159;
 
-const sphereVolume = function (radius) {
-  // Code here!
+const sphereVolume = function (radius) { //V = 4/3 π r³
+  return 4/3* PI * radius ** 3
 };
 
 console.log(4186 < sphereVolume(10) && sphereVolume(10) < 4189); //true
 
-const coneVolume = function (radius, height) {
-  // And here!
+const coneVolume = function (radius, height) { // V= ⅓ 𝜋(r^2)h
+  return 1/3* PI * radius ** 2 * height
 };
 
 console.log(45 < coneVolume(3, 5) && coneVolume(3, 5) < 49); //true
 
-const prismVolume = function (height, width, depth) {
-  // Probably here too!
+const prismVolume = function (height, width, depth) { // V = Bxh
+  return height * width * depth
 };
 
 console.log(prismVolume(3, 4, 5) === 60); //true
 
 const totalVolume = function (solids) {
-  // Code here? Yup!
+  let totalVolume = 0
+  
+  for (let key in solids){
+    if (solids[key].type === "sphere"){
+      totalVolume += sphereVolume(solids[key].radius)
+    }
+    if (solids[key].type === "cone"){
+      totalVolume += coneVolume(solids[key].radius, solids[key].height)
+    }
+    if (solids[key].type === "prismVolume"){ //height, width, depth
+      totalVolume += prismVolume(solids[key].height, solids[key].radius, solids[key].depth)
+    }
+  }
+  return totalVolume
 };
 
 const largeSphere = {

@@ -21,7 +21,36 @@ This one is a doozy! We might want to start by creating a helper function called
 */
 
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
-  // Code here!
+  let festivalRecipe
+  // Ingredient Check
+  function ingredientCheck(bakery, recipes) {
+    let sameIngredient = []
+    recipes.forEach(num => {
+      num.ingredients.forEach(materialRecipe => {
+        bakery.forEach(materialBakery => {
+          if (materialRecipe === materialBakery) {
+            sameIngredient.push(materialBakery) 
+          }
+        })
+      })  
+    })
+    return sameIngredient
+  }
+  let newIngredient = ingredientCheck(bakeryA,recipes).concat(ingredientCheck(bakeryB,recipes)) //concat the recipe ingredients in bakeryA, bakeryB 
+
+   // Check dishes could make in the recipe
+  recipes.forEach(dish => {
+    let done = 0
+    dish.ingredients.forEach((checkIngredient) => {
+      if (newIngredient.includes(checkIngredient)){
+        done ++
+      }
+    })
+    if (done === dish.ingredients.length) {
+      festivalRecipe = dish.name
+    }
+  })
+  return festivalRecipe
 };
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
