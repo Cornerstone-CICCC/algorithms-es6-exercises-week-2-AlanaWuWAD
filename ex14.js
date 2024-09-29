@@ -23,7 +23,34 @@ Penny (1¢)
 */
 
 const calculateChange = function (total, cash) {
-  // Your code here
+  const validDollar = [
+  ['tewntyDollar', 20],
+  ['tenDollar', 10],
+  ['fiveDollar', 5],
+  ['twoDollar', 2],
+  ['oneDollar', 1],
+  ['quarter', 0.25],
+  ['dime', 0.1],
+  ['nickel', 0.05],
+  ['penny', 0.01]]
+
+  let change = cash - total
+  const validCent = [...validDollar]
+  validCent.forEach(num => num[1] = num[1]*100)
+  validCent.reduce((num,currentElement) => {
+    if(num/currentElement[1] >= 1) {
+      currentElement[2] = parseInt(num/currentElement[1])
+    } 
+    return num-parseInt(num/currentElement[1])*currentElement[1]
+  },change)
+  
+  let bill=[]
+  validCent.forEach(num => {
+    if(num[2]>0){
+      bill.push(`${num[0]} : ${num[2]}`)
+    }
+  })
+  return bill
 };
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
