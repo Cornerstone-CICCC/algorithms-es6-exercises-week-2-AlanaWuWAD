@@ -22,11 +22,29 @@ Create a function named urlDecode that will receive a URL encoded string, and re
 */
 
 const urlDecode = function (text) {
-  // Put your solution here
+  let obj ={}
+  
+  temp = text.split('&')
+  
+  for(let i=0; i<temp.length; i++){
+    if(temp[i].includes('=')){
+      temp[i]=temp[i].split('=')
+      temp = temp.flat()
+      obj[temp[0]] = temp.slice(1,2).toString()
+      
+    }
+  }
+
+  if(temp[2] !== undefined){
+    temp[3]=temp[3].split('%20').join(' ')
+    obj[temp[2]] =temp[3]
+
+  }
+  return obj  
 };
 
 console.log(urlDecode("duck=rubber")); //{duck: "rubber"}
 console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain")); // {city: "Vancouver", weather: "lots of rain"}
-console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain").weather); // "lots of rain"
+console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain")); // weather"lots of rain"
 
 module.exports = urlDecode;

@@ -16,7 +16,77 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 */
 
 const makeCaze = function (input, caze) {
-  // Put your solution here
+  let arr = input.split(' ')
+  let temp = ''
+  // console.log(typeof caze)
+  if (typeof caze === 'string'){
+    if(caze === 'camel') {
+      arr.forEach( (word,i) => {
+        if(i===0){
+          temp += word
+        }else{
+          temp += word.charAt(0).toUpperCase() + word.slice(1)
+        }
+      })
+    }
+
+    if(caze === 'pascal'){
+      arr.forEach( word => {
+        temp += word.charAt(0).toUpperCase() + word.slice(1)
+      })
+    }
+
+    if(caze === 'snake'){
+      temp = arr.join('_')
+    }
+
+    if(caze === 'kebab'){
+      temp = arr.join('-')
+    }
+
+    if(caze === 'title'){
+      arr.forEach( word => {
+        word = word.charAt(0).toUpperCase() + word.slice(1)
+        temp += word + ' '
+      }) 
+    }
+
+    if(caze === 'vowel'){ //vowel upper letter
+      const vowels = ['a','e','i','o','u']
+      for(let i=0; i<input.length; i++){
+        if(vowels.includes(input[i])){
+          temp += input[i].toUpperCase()
+        }else{
+          temp += input[i]
+        }
+      }
+    }
+
+    if (caze === 'consonant') { // consonant upper letter
+      const vowels = ['a','e','i','o','u']
+      for(let i=0; i<input.length; i++){
+        if(!vowels.includes(input[i])){
+          temp += input[i].toUpperCase()
+        }else{
+          temp += input[i]
+        }
+      }
+    }
+
+    if (caze === 'upper') {
+      for (let i=0; i< input.length; i++){
+        temp += input[i].toUpperCase()
+      }
+    }
+    
+  }else {
+    caze.forEach(caze => {
+      // console.log(caze)
+       temp = makeCaze(input,caze)
+    })
+  }
+  return temp
+  
 };
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString

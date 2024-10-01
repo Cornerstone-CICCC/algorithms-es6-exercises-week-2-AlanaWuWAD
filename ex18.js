@@ -23,7 +23,32 @@ Create a function named squareCode that will receive a message, and return the s
 */
 
 const squareCode = function (message) {
-  // Put your solution here
+  let length = message.length
+  let wordNum = Math.ceil(Math.sqrt(length))
+  let newMessage = message.split(' ').join('')
+  let newLength = newMessage.length
+  let outputCode = new Array('')
+  let j = 0
+
+  for(let i=0; i<newLength; i++){
+    if((i+1)%wordNum === 0){
+      outputCode[j] = outputCode[j].replace('undefined', '')
+      outputCode[j] += newMessage[i]
+      j++
+    }else{  
+      outputCode[j] += newMessage[i]
+      outputCode[j] = outputCode[j].replace('undefined', '')
+    }
+  }
+  let output = ''
+  for(let i=0; i<wordNum; i++){
+    outputCode.forEach(digit => {
+      output += digit[i]
+  })
+  output += ' '
+}
+  output = output.replace('undefined', '')
+  return output
 };
 
 console.log(squareCode("chill out")); // clu hlt io
